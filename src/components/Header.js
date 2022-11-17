@@ -1,20 +1,20 @@
 import { useEffect } from "react";
 import styled from "styled-components";
-import axios from 'axios';
+import axios from "axios";
 
 const Header = () => {
-  useEffect(() => {
-    axios.get('/user', {},  {
-      headers: {
-       accessToken: localStorage.getItem('accessToken')
-      }
-    }).then((res) => console.log(res))
-      .catch((err) => console.log(err));
-  }, [])
+  // useEffect(() => {
+  //   axios.get('/user', {},  {
+  //     headers: {
+  //      accessToken: localStorage.getItem('accessToken')
+  //     }
+  //   }).then((res) => console.log(res))
+  //     .catch((err) => console.log(err));
+  // }, [])
   return (
     <div>
       <HeaderBar>
-        <ProductLogo>SMART PHONE</ProductLogo>
+        <ProductLogo>SECONDHAND PRODUCT</ProductLogo>
         <Productul>
           <Productli>로그인</Productli>
           <Productli>회원가입</Productli>

@@ -1,21 +1,48 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import axios from "axios";
 
 const ProductList = () => {
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    axios({
+      method: "get",
+      url: "https://dummyjson.com/products",
+    })
+      .then((response) => {
+        console.log(response);
+        setData(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
-    <div>
-      <Productcard>
-        <Productinner>
-          <ProductTitle></ProductTitle>
-          <Productprice></Productprice>
-        </Productinner>
-      </Productcard>
+    <div
+      style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
+    >
+      {data?.products.map((product) => {
+        return (
+          <Productcard>
+            <Productinner>
+              <Productthumbnail>
+                <img alt="phone" src={product.thumbnail} />
+              </Productthumbnail>
+              <ProductTitle>{product.title}</ProductTitle>
+              <Productprice>${product.price}</Productprice>
+            </Productinner>
+          </Productcard>
+        );
+      })}
     </div>
   );
 };
 
 const Productcard = styled.div`
   height: 400px;
+  width: 400px;
   position: relative;
   padding: 20px;
   box-sizing: border-box;
@@ -26,10 +53,15 @@ const Productcard = styled.div`
   margin: 20px 20px;
   box-shadow: 10px 10px 5px lightblue;
   background-size: cover;
+  overflow: auto;
 
   @include media {
     height: 500px;
   }
+`;
+
+const Productthumbnail = styled.div`
+  border-radius: 100%;
 `;
 
 const Productinner = styled.div`
