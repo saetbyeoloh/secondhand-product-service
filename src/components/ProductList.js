@@ -27,9 +27,7 @@ const ProductList = () => {
         return (
           <Productcard>
             <Productinner>
-              <Productthumbnail>
-                <img alt="phone" src={product.thumbnail} />
-              </Productthumbnail>
+              <Productthumbnail url={product.thumbnail}></Productthumbnail>
               <ProductTitle>{product.title}</ProductTitle>
               <Productprice>${product.price}</Productprice>
             </Productinner>
@@ -47,37 +45,29 @@ const Productcard = styled.div`
   padding: 20px;
   box-sizing: border-box;
   display: flex;
-  align-items: flex-end;
+  justify-content: center;
   text-decoration: none;
   border: 4px solid rgb(113, 183, 230);
   margin: 20px 20px;
   box-shadow: 10px 10px 5px lightblue;
   background-size: cover;
   overflow: auto;
-
-  @include media {
-    height: 500px;
-  }
 `;
 
 const Productthumbnail = styled.div`
-  border-radius: 100%;
+  width: 250px;
+  height: 250px;
+  background-image: ${props => (props.url ? `url(${props.url})` : '')};
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
 `;
 
 const Productinner = styled.div`
-height: 50%;
-dispaly: flex;
-flex-direction: column;
-fustify-content: center;
-align-items: center;
-background: white:
-box-sizing: border-box;
-padding: 40px;
-
-@include media {
-    width: 50%;
-    height: 100%;
-}
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const ProductTitle = styled.h2`
