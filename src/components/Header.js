@@ -1,7 +1,16 @@
-import React from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
+import axios from 'axios';
 
 const Header = () => {
+  useEffect(() => {
+    axios.get('/user', {},  {
+      headers: {
+       accessToken: localStorage.getItem('accessToken')
+      }
+    }).then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  }, [])
   return (
     <div>
       <HeaderBar>
