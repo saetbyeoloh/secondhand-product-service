@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { ImStarFull } from "react-icons/im";
 
 const ProductList = () => {
   const [data, setData] = useState();
@@ -19,17 +21,24 @@ const ProductList = () => {
       });
   }, []);
 
+  const navigate = useNavigate();
+
+  const handleClickDetail = () => {
+    navigate("./ProductDetail");
+  };
+
   return (
     <div
       style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
     >
       {data?.products.map((product) => {
         return (
-          <Productcard>
+          <Productcard onClick={handleClickDetail}>
             <Productinner>
               <Productthumbnail url={product.thumbnail}></Productthumbnail>
               <ProductTitle>{product.title}</ProductTitle>
-              <Productprice>${product.price}</Productprice>
+              <Productprice>price ${product.price}</Productprice>
+              <div>rating: {product.rating}</div>
             </Productinner>
           </Productcard>
         );
@@ -57,10 +66,11 @@ const Productcard = styled.div`
 const Productthumbnail = styled.div`
   width: 250px;
   height: 250px;
-  background-image: ${props => (props.url ? `url(${props.url})` : '')};
+  background-image: ${(props) => (props.url ? `url(${props.url})` : "")};
   background-position: center;
   background-size: cover;
   border-radius: 50%;
+  cursor: pointer;
 `;
 
 const Productinner = styled.div`

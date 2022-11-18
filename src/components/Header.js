@@ -49,6 +49,7 @@ const Productli = styled.li`
   font-size: 18px;
   font-weight: bold;
   color: white;
+  cursor: pointer;
 `;
 
 export default Header;
