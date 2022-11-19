@@ -2,7 +2,7 @@ import styled from "styled-components";
 import "./App.css";
 import Header from "./components/Header";
 import ProductList from "./components/ProductList";
-import ProductDetail from "./components/ProductDetial";
+import ProductDetail from "./components/ProductDetail";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 
 function App() {

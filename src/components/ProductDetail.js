@@ -2,11 +2,11 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import styled from "styled-components";
 
-const ProductDetial = () => {
+const ProductDetail = () => {
   useEffect(() => {
     axios({
       method: "get",
-      url: "https://dummyjson.com/products",
+      url: `https://dummyjson.com/products/${id}`,
     })
       .then((response) => {
         console.log(response);
@@ -35,4 +35,4 @@ const Productcard = styled.div`
   overflow: auto;
 `;
 
-export default ProductDetial;
+export default ProductDetail;
