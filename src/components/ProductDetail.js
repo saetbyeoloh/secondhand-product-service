@@ -1,8 +1,10 @@
 import axios from "axios";
 import React, { useEffect } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 
-const ProductDetail = () => {
+const ProductDetail = ({id}) => {
+  const [product, setProduct] = useState();
   useEffect(() => {
     axios({
       method: "get",
@@ -10,13 +12,14 @@ const ProductDetail = () => {
     })
       .then((response) => {
         console.log(response);
+        setProduct(response.data);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
 
-  return <Productcard></Productcard>;
+  return <Productcard>{JSON.stringify(product)}</Productcard>;
 };
 
 const Productcard = styled.div`
