@@ -4,7 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ImStarFull } from "react-icons/im";
 
-const ProductList = () => {
+const ProductList = ({setId}) => {
   const [data, setData] = useState();
 
   useEffect(() => {
@@ -23,8 +23,9 @@ const ProductList = () => {
 
   const navigate = useNavigate();
 
-  const handleClickDetail = () => {
-    navigate("./ProductDetail");
+  const handleClickDetail = (id) => {
+    navigate("/detail");
+    setId(id);
   };
 
   return (
@@ -33,7 +34,7 @@ const ProductList = () => {
     >
       {data?.products.map((product) => {
         return (
-          <Productcard onClick={handleClickDetail}>
+          <Productcard onClick={() => handleClickDetail(product.id)}>
             <Productinner>
               <Productthumbnail url={product.thumbnail}></Productthumbnail>
               <ProductTitle>{product.title}</ProductTitle>
